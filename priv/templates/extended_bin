@@ -54,7 +54,7 @@ if [ -z "$RELX_RPC_TIMEOUT" ]; then
         # will exit the script if NODETOOL_TIMEOUT isn't a number
         RELX_RPC_TIMEOUT=$((NODETOOL_TIMEOUT / 1000))
     else
-        RELX_RPC_TIMEOUT=60
+        RELX_RPC_TIMEOUT=600
     fi
 fi
 
@@ -826,14 +826,14 @@ case "$1" in
     stop)
         relx_run_hooks "$PRE_STOP_HOOKS"
         # Wait for the node to completely stop...
-        PID="$(relx_get_pid)"
+        #PID="$(relx_get_pid)"
         if ! erl_rpc init stop > /dev/null 2>&1; then
             exit 1
         fi
-        while kill -s 0 "$PID" 2>/dev/null;
-        do
-            sleep 1
-        done
+        #while kill -s 0 "$PID" 2>/dev/null;
+        #do
+        #    sleep 1
+        #done
 
         # wait for node to be down before running hooks
         while erl_rpc erlang is_alive > /dev/null 2>&1
