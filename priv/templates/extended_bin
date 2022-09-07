@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -e
-
+export USE_NODETOOL=1
 # http://erlang.org/doc/man/run_erl.html
 # If defined, disables input and output flow control for the pty
 # opend by run_erl. Useful if you want to remove any risk of accidentally
